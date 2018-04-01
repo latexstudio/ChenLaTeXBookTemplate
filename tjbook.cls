@@ -4,11 +4,15 @@
 \newif\ifTJ@green
 \newif\ifTJ@orange
 \newif\ifTJ@violet
+\newif\ifTJ@customfont
+\newif\ifTJ@systemfont
 \DeclareOption{green}{\TJ@greentrue\TJ@orangefalse\TJ@violetfalse}
 \DeclareOption{orange}{\TJ@greenfalse\TJ@orangetrue\TJ@violetfalse}
 \DeclareOption{violet}{\TJ@greenfalse\TJ@orangefalse\TJ@violettrue}
+\DeclareOption{customfont}{\TJ@customfonttrue}
+\DeclareOption{systemfont}{\TJ@customfontfalse}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{\TJ@classtoload}}
-\ExecuteOptions{green}
+\ExecuteOptions{green,customfont}
 \ProcessOptions
 \LoadClass{\TJ@classtoload}
 %--------------------------------------------------------------------------------
@@ -36,7 +40,12 @@
 \RequirePackage{ean13isbn}
 \newcommand{\drawbarcode}[1]{\EANisbn[SC5a,ISBN=#1]}
 %--------------------------------------------------------------------------------
-% CJK字体设置 需要思源宋体、思源黑体、文泉驿微米黑、造字工坊的刻宋、郎宋、黄金时代
+% 字体设置 由选项customfont与systemfont决定
+% 感谢林莲枝前辈的帮助
+%--------------------------------------------------------------------------------
+\ifTJ@customfont
+%--------------------------------------------------------------------------------
+% CJK字体设置 默认需要思源宋体、思源黑体、文泉驿微米黑、造字工坊的刻宋、郎宋、黄金时代
 %--------------------------------------------------------------------------------
 \setCJKmainfont[BoldFont={Noto Serif CJK SC Bold},ItalicFont={AR PL UKai HK}]{Noto Serif CJK SC ExtraLight}
 \setCJKsansfont[BoldFont={Noto Sans S Chinese Medium}]{Noto Sans S Chinese DemiLight}
@@ -48,12 +57,21 @@
 \setCJKfamilyfont{zhlangsong}{MF LangSong (Noncommercial)}
 \newcommand{\langsong}{\CJKfamily{zhlangsong}}
 %--------------------------------------------------------------------------------
-% 西文特殊字体设置，使用刻宋、郎宋、黄金时代的英文字体
+% 西文特殊字体设置 默认使用刻宋、郎宋、黄金时代的英文字体
 %--------------------------------------------------------------------------------
 %\newfontfamily\SourceCodePro[Mapping=tex-text]{Source Code Pro}
 \newfontfamily\KeSongf[Mapping=tex-text]{MF KeSong (Noncommercial)}
 \newfontfamily\hjsdf[Mapping=tex-text]{MF TheGoldenEra (Noncommercial)}
 \newfontfamily\langsongf[Mapping=tex-text]{MF LangSong (Noncommercial)}
+\else
+\ClassWarning{tjbook}{你已启用 systemfont 选项，只能用系统自带的宋、黑、楷、仿。}
+\newcommand{\KeSong}{\songti}
+\newcommand{\hjsd}{\songti}
+\newcommand{\langsong}{\songti}
+\newcommand{\KeSongf}{\rmfamily}
+\newcommand{\hjsdf}{\rmfamily}
+\newcommand{\langsongf}{\rmfamily}
+\fi
 %--------------------------------------------------------------------------------
 % 色彩定义
 %--------------------------------------------------------------------------------

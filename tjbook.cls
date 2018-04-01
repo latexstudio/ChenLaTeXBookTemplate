@@ -194,14 +194,6 @@ colframe=cvgreen,boxrule=0pt,bottomrule=2pt,toprule=0pt,leftrule=5mm}
 %----- 若为双面排版，确保封底在偶数页。
 \if@twoside
     \ifodd\c@page
-	    \if@openright
-		    \thispagestyle{empty}
-			\mbox{}
-			\newpage
-			\if@twocolumn
-			  \mbox{}\newpage
-			\fi
-		\fi
 	\fi
 \fi
 \thispagestyle{empty}

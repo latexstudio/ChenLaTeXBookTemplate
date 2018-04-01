@@ -5,7 +5,7 @@
 
 编译测试版本：TeXLive 2017，xelatex进行编译。
 
-所需字体下载链接：https://pan.baidu.com/s/1N89ZCtRnypyzWpeILdEMzg 密码：9epr
+所需字体下载链接：[https://share.weiyun.com/5jHbzU9](https://share.weiyun.com/5jHbzU9)
 
 希望大家可以一起逐步丰富起来书籍模板，供大家更多用户一起使用。
 

@@ -1,0 +1,30 @@
+%!Mode:: "TeX:Hard:UTF-8"
+%!TEX program = xelatex
+\documentclass[orange]{tjbook}
+\usepackage{zhlipsum}
+\title{一个中文书籍的\LaTeX{}模板}
+\DedicatedTo{需要一个书籍模板的人}
+\subtitle{这里可以放一个副标题}
+\author{张三}% 默认值
+\BookSeries{计算机应用技术丛书}% 可取消
+\BookIntroduction{这个图书模板是在群主网站上的一个封面模板的基础上改写而成的，设定了一些图书出版要素，设计了封面、扉页及版权页和封底的样式，修改了chapter的样式，并提供了几个选项可切换色彩风格，其余则维持book基本文档类的设定。\par 图书模板部分代码的完成得到了林莲枝大神的帮助，在此表示感谢。由于作者水平有限，模板代码编写不恰当之处还请用户提出批评和指正。\par 感谢造字工坊提供了刻宋、郎宋和黄金时代三种非商业可免费下载使用的字体。\par 感谢谷歌提供自由使用的思源宋体、思源黑体。\par 感谢文泉驿提供的开源的文泉驿等宽微米黑字体。}
+\Publisher{\LaTeX Studio 出版社} %默认值
+%\Designer{张三丰}
+%\Editor{张三丰}
+\edition{1}% 可取消
+\Price{26.5}
+\isbn{978-80-7340-097-2}
+
+\begin{document}
+\maketitle
+\makeflypage
+\frontmatter
+\tableofcontents
+
+\mainmatter
+\chapter{测试}
+\zhlipsum[1]
+\section{测试小节}
+\zhlipsum[2-8]
+\makebackcover
+\end{document} 

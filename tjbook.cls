@@ -5,7 +5,6 @@
 \newif\ifTJ@orange
 \newif\ifTJ@violet
 \newif\ifTJ@customfont
-\newif\ifTJ@systemfont
 \DeclareOption{green}{\TJ@greentrue\TJ@orangefalse\TJ@violetfalse}
 \DeclareOption{orange}{\TJ@greenfalse\TJ@orangetrue\TJ@violetfalse}
 \DeclareOption{violet}{\TJ@greenfalse\TJ@orangefalse\TJ@violettrue}

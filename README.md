@@ -5,7 +5,7 @@
 
 编译测试版本：TeXLive 2017，xelatex进行编译。
 
-所需字体见font文件夹
+所需字体见字体下载链接：https://share.weiyun.com/5jHbzU9
 
 希望大家可以一起逐步丰富起来书籍模板，供大家更多用户一起使用。
 

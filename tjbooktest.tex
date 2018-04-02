@@ -1,7 +1,6 @@
 %!Mode:: "TeX:Hard:UTF-8"
 %!TEX program = xelatex
-\documentclass[orange]{tjbook}
-\usepackage{zhlipsum}
+\documentclass{tjbook}
 \title{一个中文书籍的\LaTeX{}模板}
 \DedicatedTo{需要一个书籍模板的人}
 \subtitle{这里可以放一个副标题}
@@ -22,9 +21,13 @@
 \tableofcontents
 
 \mainmatter
-\chapter{测试}
-\zhlipsum[1]
-\section{测试小节}
-\zhlipsum[2-8]
+\chapter{说明}
+首先我们简要说明一下目前已经开发出来的模板功能，包括字体选择和颜色选择。
+\section{颜色选择}
+目前颜色选择共三种，green，orange和violet，默认为green。
+\section{字体选择}
+目前字体选择共两种，customfont和systemfont，默认为customfont。
+若要使用customfont，需要安装相应的字体。
+若要使用systemfont，则模板直接调用系统内部字体。
 \makebackcover
 \end{document} 

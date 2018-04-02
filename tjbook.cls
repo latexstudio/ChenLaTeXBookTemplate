@@ -148,7 +148,7 @@ colframe=cvgreen,boxrule=0pt,bottomrule=2pt,toprule=0pt,leftrule=5mm}
 \newcommand{\isbn}[1]{\def\TJ@isbn{#1}}
 \def\TJ@isbn{978-7-302-11622-6}
 %--------------------------------------------------------------------------------
-%  罗马数字定义 
+%  罗马数字定义
 %     \ROMAN{<数字>} 大写罗马数字
 %--------------------------------------------------------------------------------
 \newcommand{\ROMAN}[1]{\expandafter\@slowromancap\romannumeral #1@}
@@ -173,7 +173,7 @@ colframe=cvgreen,boxrule=0pt,bottomrule=2pt,toprule=0pt,leftrule=5mm}
 	\@ifundefined{TJ@edition}{}{%
     \fill[cvgreen]([xshift=-2.5cm]current page.south east)-- ++(-5,0)-- ++(7.5,7.5)-- ++(0,-5)--cycle;
 	\node [white] at([xshift=-2.8cm,yshift=2.8cm]current page.south east)[rotate=45]{\bfseries\sffamily\LARGE 第\zhnumber{\TJ@edition}版};
-    \node [white] at([xshift=-2.2cm,yshift=2.2cm]current page.south east)[rotate=45]{\bfseries\LARGE Edition \ROMAN{\TJ@edition}}; 	
+    \node [white] at([xshift=-2.2cm,yshift=2.2cm]current page.south east)[rotate=45]{\bfseries\LARGE Edition \ROMAN{\TJ@edition}};
 	\draw[white,thick] ([xshift=-4cm,yshift=1cm]current page.south east)--([xshift=-1cm,yshift=4cm]current page.south east);
 	\path[fill=blue!75!white,draw=blue,double=white!85!blue,
           preaction={opacity=0.6,fill=blue!75!white},
@@ -259,7 +259,7 @@ colframe=cvgreen,boxrule=0pt,bottomrule=2pt,toprule=0pt,leftrule=5mm}
 {\Large\KeSong\KeSongf\TJ@Publisher}\\[-2pt]
 {\normalsize\texttt{http://www.latexstudio.net}}\\[-5pt]
 {\footnotesize 开本：\rndprintlength{\paperwidth}$\times$\rndprintlength{\paperheight} \hspace{0.5em} 字数：有功夫您帮我数一下}\\[0pt]
-{\small \the\year 年\the\month 月 第 \TJ@edition\ 版 第 1 次印刷}\\[-5pt]
+\@ifundefined{TJ@edition}{}{{\small \the\year 年\the\month 月 第 \TJ@edition\ 版 第 1 次印刷}\\[-5pt]}
 {\small 印数：001--100 册 \hspace{0.5em} 定价：\TJ@price 元}\\[5pt]
 \hrule
 \vskip5pt
@@ -284,7 +284,7 @@ colframe=cvgreen,boxrule=0pt,bottomrule=2pt,toprule=0pt,leftrule=5mm}
 %--------------------------------------------------------------------------------
 \renewcommand{\cleardoublepage}{
     \clearpage
-    \if@twoside 
+    \if@twoside
 	    \ifodd
           \c@page
         \else
@@ -295,7 +295,7 @@ colframe=cvgreen,boxrule=0pt,bottomrule=2pt,toprule=0pt,leftrule=5mm}
 				\if@twocolumn
 					\mbox{}\newpage
 				\fi
-			\fi 
+			\fi
 		\fi
 	\fi
 }

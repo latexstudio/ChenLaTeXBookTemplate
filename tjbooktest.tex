@@ -29,5 +29,27 @@
 目前字体选择共两种，customfont和systemfont，默认为customfont。
 若要使用customfont，需要安装相应的字体。
 若要使用systemfont，则模板直接调用系统内部字体。
+
+\section{几个可有可无的 tcolorbox 设置}
+
+现有 \texttt{appledark}, \texttt{applelight}, \texttt{win10dark}, \texttt{win10light} 四个选项。
+如果是供荧幕阅读的还好；如果是要打印出来的，除非您就是打印店的老板，不然还是不要多用 \texttt{*dark} 选项。
+
+\begin{tcolorbox}[appledark,title={世界你好！}]
+天气好吗？吃饱了吗？
+\end{tcolorbox}
+
+\begin{tcolorbox}[applelight,title={世界你好！}]
+天气好吗？吃饱了吗？
+\end{tcolorbox}
+
+\begin{tcolorbox}[win10dark,title={世界你好！}]
+天气好吗？吃饱了吗？
+\end{tcolorbox}
+
+\begin{tcolorbox}[win10light,title={世界你好！}]
+天气好吗？吃饱了吗？
+\end{tcolorbox}
+
 \makebackcover
-\end{document} 
+\end{document}

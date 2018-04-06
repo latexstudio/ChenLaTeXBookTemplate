@@ -299,4 +299,53 @@ colframe=cvgreen,boxrule=0pt,bottomrule=2pt,toprule=0pt,leftrule=5mm}
 	\fi
 }
 %--------------------------------------------------------------------------------
+
+
+%--------------------------------------------------------------------------------
+% 几个可有可无的 tcolorbox 设置
+%--------------------------------------------------------------------------------
+\RequirePackage{amssymb,fontawesome}
+\definecolor{MyLightGray}{HTML}{EEEEEE}
+\definecolor{MyDarkGray}{HTML}{333333}
+\definecolor{DarkText}{HTML}{111111}
+\definecolor{AppleRed}{RGB}{255,95,86}
+\definecolor{AppleYellow}{RGB}{255,189,46}
+\definecolor{AppleGreen}{RGB}{39,201,63}
+
+\tcbset{skin=enhanced,
+  apple/.style={%
+    center title,
+    toptitle=1ex,
+    overlay = {\node[inner sep=0pt,anchor=north west,yshift=-9pt,xshift=11pt] at (frame.north west)
+      {\textcolor{AppleRed}{\faCircle} \textcolor{AppleYellow}{\faCircle} \textcolor{AppleGreen}{\faCircle}};},
+    fonttitle=\sffamily\bfseries,
+    fontupper=\small\sffamily,
+    fontlower=\small\sffamily
+  },
+  appledark/.style={apple,
+    colback=MyDarkGray,colbacktitle=MyDarkGray,colframe=MyDarkGray,coltitle=MyLightGray,coltext=MyLightGray
+  },
+  applelight/.style={apple,
+    colback=MyLightGray,colbacktitle=MyLightGray,colframe=MyLightGray,coltitle=DarkText
+  },
+  %
+  win10/.style={%
+    toptitle=1ex,
+    sharp corners,
+    fonttitle=\sffamily\bfseries,
+    fontupper=\small\sffamily,
+    fontlower=\small\sffamily,
+  },
+  win10light/.style={win10,
+    colback=MyLightGray,colbacktitle=MyLightGray,colframe=MyLightGray,coltitle=DarkText,
+    overlay = {\node[inner sep=0pt,anchor=north east,yshift=-9pt,xshift=-11pt,text=DarkText] at (frame.north east)
+      {\rule{0.8em}{0.6pt}\quad$\square$\quad{\Large$\times$}};}
+  },
+  win10dark/.style={win10,
+    colback=MyDarkGray,colbacktitle=MyDarkGray,colframe=MyDarkGray,coltitle=MyLightGray,coltext=MyLightGray,
+    overlay = {\node[inner sep=0pt,anchor=north east,yshift=-9pt,xshift=-11pt,text=MyLightGray] at (frame.north east)
+      {\rule{0.8em}{0.6pt}\quad$\square$\quad{\Large$\times$}};}
+  }
+}
+
 \endinput

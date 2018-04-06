@@ -1,19 +1,19 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{tjbook}[2018/04/01 v1.0.0, by ZHANG Chennan chennanzhang@gmail.com]
-\def\TJ@classtoload{book}
-\newif\ifTJ@green
-\newif\ifTJ@orange
-\newif\ifTJ@violet
-\newif\ifTJ@customfont
-\DeclareOption{green}{\TJ@greentrue\TJ@orangefalse\TJ@violetfalse}
-\DeclareOption{orange}{\TJ@greenfalse\TJ@orangetrue\TJ@violetfalse}
-\DeclareOption{violet}{\TJ@greenfalse\TJ@orangefalse\TJ@violettrue}
-\DeclareOption{customfont}{\TJ@customfonttrue}
-\DeclareOption{systemfont}{\TJ@customfontfalse}
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{\TJ@classtoload}}
-\ExecuteOptions{green,customfont}
+\ProvidesClass{lsbook}[2018/04/06 v1.0.6, by ZHANG Chennan chennanzhang@gmail.com with contributions from the Chinese LaTeX QQ Discussion Group 91940767]
+\def\LS@classtoload{book}
+\newif\ifLS@green
+\newif\ifLS@orange
+\newif\ifLS@violet
+\newif\ifLS@customfont
+\DeclareOption{green}{\LS@greentrue\LS@orangefalse\LS@violetfalse}
+\DeclareOption{orange}{\LS@greenfalse\LS@orangetrue\LS@violetfalse}
+\DeclareOption{violet}{\LS@greenfalse\LS@orangefalse\LS@violettrue}
+\DeclareOption{customfont}{\LS@customfonttrue}
+\DeclareOption{systemfont}{\LS@customfontfalse}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{\LS@classtoload}}
+\ExecuteOptions{green,systemfont}
 \ProcessOptions
-\LoadClass{\TJ@classtoload}
+\LoadClass{\LS@classtoload}
 %--------------------------------------------------------------------------------
 % 要求必须使用 xelatex 进行编译
 %--------------------------------------------------------------------------------
@@ -42,9 +42,10 @@
 % 字体设置 由选项customfont与systemfont决定
 % 感谢林莲枝前辈的帮助
 %--------------------------------------------------------------------------------
-\ifTJ@customfont
+\ifLS@customfont
+\typeout{你已启用 customfont 选项，请确保操作系统已安装需要的字库。}
 %--------------------------------------------------------------------------------
-% CJK字体设置 默认需要思源宋体、思源黑体、文泉驿微米黑、造字工坊的刻宋、郎宋、黄金时代
+% CJK字体设置 需要思源宋体、思源黑体、文泉驿微米黑、造字工坊的刻宋、郎宋、黄金时代
 %--------------------------------------------------------------------------------
 \setCJKmainfont[BoldFont={Noto Serif CJK SC Bold},ItalicFont={AR PL UKai HK}]{Noto Serif CJK SC ExtraLight}
 \setCJKsansfont[BoldFont={Noto Sans S Chinese Medium}]{Noto Sans S Chinese DemiLight}
@@ -63,7 +64,8 @@
 \newfontfamily\hjsdf[Mapping=tex-text]{MF TheGoldenEra (Noncommercial)}
 \newfontfamily\langsongf[Mapping=tex-text]{MF LangSong (Noncommercial)}
 \else
-\ClassWarning{tjbook}{你已启用 systemfont 选项，只能用系统自带的宋、黑、楷、仿。}
+% \ClassWarning{lsbook}{你已启用 systemfont 选项，只能用系统自带的宋、黑、楷、仿。}
+\typeout{你已默认/启用 systemfont 选项，只能用系统自带的宋、黑、楷、仿。}
 \newcommand{\KeSong}{\songti}
 \newcommand{\hjsd}{\songti}
 \newcommand{\langsong}{\songti}
@@ -74,21 +76,21 @@
 %--------------------------------------------------------------------------------
 % 色彩定义
 %--------------------------------------------------------------------------------
-\ifTJ@green
-\definecolor{cvgreen}{HTML}{92D14F}
-\definecolor{cvgray}{HTML}{D8E4BE}
+\ifLS@green
+\definecolor{cvprimary}{HTML}{92D14F}
+\definecolor{cvsecondary}{HTML}{D8E4BE}
 \definecolor{cvtext}{HTML}{92909B}
 \else
 \fi
-\ifTJ@orange
-\definecolor{cvgreen}{RGB}{230,140,20}
-\definecolor{cvgray}{RGB}{248,216,174}
+\ifLS@orange
+\definecolor{cvprimary}{RGB}{230,140,20}
+\definecolor{cvsecondary}{RGB}{248,216,174}
 \definecolor{cvtext}{RGB}{100,100,100}
 \else
 \fi
-\ifTJ@violet
-\definecolor{cvgreen}{RGB}{178,10,142}
-\definecolor{cvgray}{RGB}{209,181,217}
+\ifLS@violet
+\definecolor{cvprimary}{RGB}{178,10,142}
+\definecolor{cvsecondary}{RGB}{209,181,217}
 \definecolor{cvtext}{RGB}{100,100,100}
 \else
 \fi
@@ -108,44 +110,44 @@
                       titleformat  = \chaptertitlebox,
                       aftertitle   = \par\smallskip
 }}
-\newtcbox{mynamebox}{on line,colback=cvgray,arc=0pt,boxrule=0pt,toprule=2pt,rightrule=5mm,
-colframe=cvgreen,coltext=cvtext}
+\newtcbox{mynamebox}{on line,colback=cvsecondary,arc=0pt,boxrule=0pt,toprule=2pt,rightrule=5mm,
+colframe=cvprimary,coltext=cvtext}
 \newcommand\chapternamebox[1]{%
 \mynamebox{#1}}
-\newtcolorbox{mytitlebox}{colback=cvgray,arc=0pt,coltext=cvtext,
-colframe=cvgreen,boxrule=0pt,bottomrule=2pt,toprule=0pt,leftrule=5mm}
+\newtcolorbox{mytitlebox}{colback=cvsecondary,arc=0pt,coltext=cvtext,
+colframe=cvprimary,boxrule=0pt,bottomrule=2pt,toprule=0pt,leftrule=5mm}
 \newcommand\chaptertitlebox[1]{%
 \begin{mytitlebox}#1\end{mytitlebox}}
 %--------------------------------------------------------------------------------
 % 书籍要素的定义
 %--------------------------------------------------------------------------------
 %---- 丛书系列名称 ------
-\newcommand{\BookSeries}[1]{\def\TJ@BookSeries{#1}}
+\newcommand{\BookSeries}[1]{\def\LS@BookSeries{#1}}
 %---- 书名与作者由原\title定义 ------
 \def\@title{一本名字起得太TM的长了的书}
 \def\@author{张三}
 %---- 副标题自己定义，可设可不设 ------
-\newcommand{\subtitle}[1]{\def\TJ@subtitle{#1}}
+\newcommand{\subtitle}[1]{\def\LS@subtitle{#1}}
 %---- 书籍简介 可设可不设------
-\newcommand{\BookIntroduction}[1]{\def\TJ@BookIntroduction{#1}}
+\newcommand{\BookIntroduction}[1]{\def\LS@BookIntroduction{#1}}
 %---- 书籍版本 ------
-\newcommand{\edition}[1]{\def\TJ@edition{#1}}
+\newcommand{\edition}[1]{\def\LS@edition{#1}}
 %---- 出版社 ------
-\newcommand{\Publisher}[1]{\def\TJ@Publisher{#1}}
-\def\TJ@Publisher{\LaTeX Studio 出版社}
+\newcommand{\Publisher}[1]{\def\LS@Publisher{#1}}
+\def\LS@Publisher{\LaTeX Studio 出版社}
 %---- 献词 ------
-\newcommand\DedicatedTo[1]{\def\TJ@DedicatedTo{#1}}
+\newcommand\DedicatedTo[1]{\def\LS@DedicatedTo{#1}}
 %---- 责任编辑 ------
-\newcommand{\Editor}[1]{\def\TJ@editor{#1}}
-\def\TJ@editor{责编}
+\newcommand{\Editor}[1]{\def\LS@editor{#1}}
+\def\LS@editor{责编}
 %---- 封面设计 ------
-\newcommand{\Designer}[1]{\def\TJ@designer{#1}}
-\def\TJ@designer{张晨南}
+\newcommand{\Designer}[1]{\def\LS@designer{#1}}
+\def\LS@designer{张晨南}
 %---- 定价 ------
-\newcommand{\Price}[1]{\def\TJ@price{#1}}
-\def\TJ@price{358.00} %谨以此怀念我大学的宿舍号码
-\newcommand{\isbn}[1]{\def\TJ@isbn{#1}}
-\def\TJ@isbn{978-7-302-11622-6}
+\newcommand{\Price}[1]{\def\LS@price{#1}}
+\def\LS@price{358.00} %谨以此怀念我大学的宿舍号码
+\newcommand{\isbn}[1]{\def\LS@isbn{#1}}
+\def\LS@isbn{978-7-302-11622-6}
 %--------------------------------------------------------------------------------
 %  罗马数字定义
 %     \ROMAN{<数字>} 大写罗马数字
@@ -159,20 +161,20 @@ colframe=cvgreen,boxrule=0pt,bottomrule=2pt,toprule=0pt,leftrule=5mm}
 \thispagestyle{empty}
 \begin{tikzpicture}[remember picture,overlay]
     %----- 竖条幅
-	\fill[cvgreen] (current page.north west) rectangle ([xshift=5cm]current page.south west);
+	\fill[cvprimary] (current page.north west) rectangle ([xshift=5cm]current page.south west);
     %----- 横条幅
-    \fill[cvgray] ([yshift=-5cm]current page.north west) rectangle ([yshift=-10cm]current page.north east);
+    \fill[cvsecondary] ([yshift=-5cm]current page.north west) rectangle ([yshift=-10cm]current page.north east);
     %----- 丛书名称
 	\@ifundefined{TJ@BookSeries}{}{%
-	\node[above right] at ([xshift=5.5cm,yshift=-4.5cm]current page.north west){\LARGE\hjsd\hjsdf\TJ@BookSeries};}
+	\node[above right] at ([xshift=5.5cm,yshift=-4.5cm]current page.north west){\LARGE\hjsd\hjsdf\LS@BookSeries};}
 	%----- 书名与副标题
     \node[cvtext,right,text width=17cm,inner sep=0.3cm] at ([xshift=1cm,yshift=-7cm]current page.north west) {\fontsize{40pt}{48pt}\selectfont\langsong\langsongf\@title};
-	\@ifundefined{TJ@subtitle}{\relax}{\node[cvtext,above left] at ([xshift=-1cm,yshift=-9.5cm]current page.north east) {\huge\sffamily ------~\TJ@subtitle};}
+	\@ifundefined{TJ@subtitle}{\relax}{\node[cvtext,above left] at ([xshift=-1cm,yshift=-9.5cm]current page.north east) {\huge\sffamily ------~\LS@subtitle};}
     %----- 右下角的版本号
 	\@ifundefined{TJ@edition}{}{%
-    \fill[cvgreen]([xshift=-2.5cm]current page.south east)-- ++(-5,0)-- ++(7.5,7.5)-- ++(0,-5)--cycle;
-	\node [white] at([xshift=-2.8cm,yshift=2.8cm]current page.south east)[rotate=45]{\bfseries\sffamily\LARGE 第\zhnumber{\TJ@edition}版};
-    \node [white] at([xshift=-2.2cm,yshift=2.2cm]current page.south east)[rotate=45]{\bfseries\LARGE Edition \ROMAN{\TJ@edition}};
+    \fill[cvprimary]([xshift=-2.5cm]current page.south east)-- ++(-5,0)-- ++(7.5,7.5)-- ++(0,-5)--cycle;
+	\node [white] at([xshift=-2.8cm,yshift=2.8cm]current page.south east)[rotate=45]{\bfseries\sffamily\LARGE 第\zhnumber{\LS@edition}版};
+    \node [white] at([xshift=-2.2cm,yshift=2.2cm]current page.south east)[rotate=45]{\bfseries\LARGE Edition \ROMAN{\LS@edition}};
 	\draw[white,thick] ([xshift=-4cm,yshift=1cm]current page.south east)--([xshift=-1cm,yshift=4cm]current page.south east);
 	\path[fill=blue!75!white,draw=blue,double=white!85!blue,
           preaction={opacity=0.6,fill=blue!75!white},
@@ -184,7 +186,7 @@ colframe=cvgreen,boxrule=0pt,bottomrule=2pt,toprule=0pt,leftrule=5mm}
           line width=0.1mm,double distance=0.2mm,
           pattern=fivepointed stars,pattern color=white!75!blue]
         ([xshift=-6.5cm]current page.south east)-- ++(-0.5,0) -- ++(7,7) -- ++(0,-0.5) -- cycle;}
-	\node[right] at ([xshift=5.5cm,yshift=2.5cm]current page.south west){\LARGE\KeSong\KeSongf\TJ@Publisher};
+	\node[right] at ([xshift=5.5cm,yshift=2.5cm]current page.south west){\LARGE\KeSong\KeSongf\LS@Publisher};
     %----- 简介与作者
 	\@ifundefined{TJ@BookIntroduction}%
 	{\node[inner sep=0pt,below right,white] (image) at ([xshift=5cm,yshift=-12cm]current page.north west){%
@@ -192,7 +194,7 @@ colframe=cvgreen,boxrule=0pt,bottomrule=2pt,toprule=0pt,leftrule=5mm}
 	\draw[white,line width=1mm](image.east)-- ++(5,0) node[above left,text=black]{\LARGE\itshape\makebox[3em][s]{\LARGE\itshape\@author}\hspace{0.5em}著};}%
     {\node[inner sep=0pt,below right] (image) at ([xshift=5cm,yshift=-12cm]current page.north west){%
 	\begin{tcolorbox}[sharp corners=west,text width =8cm,colframe=cvtext,leftrule=0pt,arc =10pt,toprule=3mm,bottomrule=3mm]
-	\large\TJ@BookIntroduction
+	\large\LS@BookIntroduction
 	\end{tcolorbox}};
 	\draw[cvtext,line width=1mm](image.east)-- ++(5,0) node[above left,text=black]{\LARGE\itshape\makebox[3em][s]{\LARGE\itshape\@author}\hspace{0.5em}著};}
 \end{tikzpicture}
@@ -217,18 +219,18 @@ colframe=cvgreen,boxrule=0pt,bottomrule=2pt,toprule=0pt,leftrule=5mm}
 %------ 封底图形
 \begin{tikzpicture}[remember picture,overlay]
 %------ 竖条纹
-\fill[cvgreen] (current page.north east) rectangle ([xshift=-6cm]current page.south east);
-\fill[cvgreen] ([xshift=-6.2cm]current page.north east) rectangle ([xshift=-6.35cm]current page.south east);
-\fill[cvgreen] ([xshift=-6.45cm]current page.north east) rectangle ([xshift=-6.55cm]current page.south east);
-\fill[cvgreen] ([xshift=-6.65cm]current page.north east) rectangle ([xshift=-6.7cm]current page.south east);
+\fill[cvprimary] (current page.north east) rectangle ([xshift=-6cm]current page.south east);
+\fill[cvprimary] ([xshift=-6.2cm]current page.north east) rectangle ([xshift=-6.35cm]current page.south east);
+\fill[cvprimary] ([xshift=-6.45cm]current page.north east) rectangle ([xshift=-6.55cm]current page.south east);
+\fill[cvprimary] ([xshift=-6.65cm]current page.north east) rectangle ([xshift=-6.7cm]current page.south east);
 %------ 横条纹
-\fill[cvgray] ([yshift=-5cm]current page.north west) rectangle ([yshift=-10cm]current page.north east);
+\fill[cvsecondary] ([yshift=-5cm]current page.north west) rectangle ([yshift=-10cm]current page.north east);
 %------ 编辑与封面设计
-\node[right] at ([xshift=1cm,yshift=-4cm]current page.north west) {\large\itshape 封面设计：\makebox[3em][s]{\large\itshape\TJ@designer}};
-\node[right] at ([xshift=1cm,yshift=-4.5cm]current page.north west) {\large\itshape 责任编辑：\makebox[3em][s]{\large\itshape\TJ@editor}};
+\node[right] at ([xshift=1cm,yshift=-4cm]current page.north west) {\large\itshape 封面设计：\makebox[3em][s]{\large\itshape\LS@designer}};
+\node[right] at ([xshift=1cm,yshift=-4.5cm]current page.north west) {\large\itshape 责任编辑：\makebox[3em][s]{\large\itshape\LS@editor}};
 %------ ISBN条码及定价
-\node at ([xshift=-3.3cm,yshift=5cm]current page.south east){\expandafter\drawbarcode\expandafter{\TJ@isbn}};%978-80-7340-097-2
-\node at ([xshift=-3.3cm,yshift=2.8cm]current page.south east){\sffamily\Large 定价：\TJ@price 元};
+\node at ([xshift=-3.3cm,yshift=5cm]current page.south east){\expandafter\drawbarcode\expandafter{\LS@isbn}};%978-80-7340-097-2
+\node at ([xshift=-3.3cm,yshift=2.8cm]current page.south east){\sffamily\Large 定价：\LS@price 元};
 \end{tikzpicture}
 %----- 避免多次使用，执行一次后就更改定义。
 \global\let\makebackcover\relax
@@ -249,17 +251,17 @@ colframe=cvgreen,boxrule=0pt,bottomrule=2pt,toprule=0pt,leftrule=5mm}
 \end{center}
 \vspace{\stretch{1}}
 \newpage\thispagestyle{empty}
-\@ifundefined{TJ@DedicatedTo}{\mbox{}}{\Large\textbf{献给}：\TJ@DedicatedTo}
+\@ifundefined{TJ@DedicatedTo}{\mbox{}}{\Large\textbf{献给}：\LS@DedicatedTo}
 \vfill
 \begin{center}
 {\large\sffamily \@title}\\
 {\itshape\normalsize \makebox[3em][s]{\itshape\@author}\hspace{0.5em}著}\\[5pt]
 \makebox[2cm][s]{* * *}\\[10pt]
-{\Large\KeSong\KeSongf\TJ@Publisher}\\[-2pt]
+{\Large\KeSong\KeSongf\LS@Publisher}\\[-2pt]
 {\normalsize\texttt{http://www.latexstudio.net}}\\[-5pt]
 {\footnotesize 开本：\rndprintlength{\paperwidth}$\times$\rndprintlength{\paperheight} \hspace{0.5em} 字数：有功夫您帮我数一下}\\[0pt]
-\@ifundefined{TJ@edition}{}{{\small \the\year 年\the\month 月 第 \TJ@edition\ 版 第 1 次印刷}\\[-5pt]}
-{\small 印数：001--100 册 \hspace{0.5em} 定价：\TJ@price 元}\\[5pt]
+\@ifundefined{TJ@edition}{}{{\small \the\year 年\the\month 月 第 \LS@edition\ 版 第 1 次印刷}\\[-5pt]}
+{\small 印数：001--100 册 \hspace{0.5em} 定价：\LS@price 元}\\[5pt]
 \hrule
 \vskip5pt
 {\small 本书如有缺页、倒页、脱页，请自行处理一下}
@@ -349,3 +351,4 @@ colframe=cvgreen,boxrule=0pt,bottomrule=2pt,toprule=0pt,leftrule=5mm}
 }
 
 \endinput
+启用

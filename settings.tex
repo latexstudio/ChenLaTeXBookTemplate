@@ -1,0 +1,56 @@
+
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath}
+\DeclareMathOperator{\argmin}{argmin}
+\usepackage[math-style=TeX]{unicode-math}
+
+%\setmathfont{texgyrepagella-math.otf}[math-style=TeX]
+%\usepackage{bm}
+
+\usepackage{extarrows}
+\usepackage[c1]{optidef}
+
+% hyperlink
+\usepackage[colorlinks=true,hidelinks]{hyperref}
+
+
+\def\equationautorefname~#1\null{公式(#1)\null}%
+\def\footnoteautorefname{脚注}%
+\def\itemautorefname~#1\null{第#1项\null}%
+\def\figureautorefname{图}%
+\def\tableautorefname{表}%
+\def\partautorefname~#1\null{第#1部分\null}%
+\def\appendixautorefname{附录}%
+\def\chapterautorefname~#1\null{第#1章\null}%
+\def\sectionautorefname~#1\null{第#1节\null}%
+\def\subsectionautorefname~#1\null{第#1小节\null}%
+\def\subsubsectionautorefname~#1\null{第#1小小节\null}%
+\def\paragraphautorefname~#1\null{第#1段\null}%
+\def\subparagraphautorefname~#1\null{第#1小段\null}%
+\def\theoremautorefname{定理}%
+\def\pageautorefname~#1\null{第~#1~页\null}%
+
+\RequirePackage[nameinlink]{cleveref}      % 'nameinlink' option emulates look of \autoref
+\crefname{cvcounter}{Program List}{Program Lists} 
+
+\crefrangeformat{equation}{公式~(#3#1#4) 至~(#5#2#6)}
+\crefmultiformat{equation}{公式~(#2#1#3)}{ 和~(#2#1#3)}{, (#2#1#3)}{ 和~(#2#1#3)}
+
+%\crefrangemultiformat{equation}{公式~(#2#1#3)}{, (#2#1#3)}{, (#2#1#3)}{和~(#2#1#3)}
+
+\crefname{equation}{式}{公式}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\xeCJKsetup {
+	CheckSingle = true,
+	AutoFallBack = true,
+	AutoFakeBold = false,
+	AutoFakeSlant = false,
+	CJKecglue = {~},
+	PunctStyle = kaiming,
+	KaiMingPunct+ = {：；},
+}
+

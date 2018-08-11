@@ -30,7 +30,7 @@
 %--------------------------------------------------------------------------------
 % tikz 及 tcolorbox 应用
 %--------------------------------------------------------------------------------
-\RequirePackage{tcolorbox}
+\RequirePackage[minted]{tcolorbox}
 \tcbuselibrary{skins,breakable}
 \usetikzlibrary{patterns}
 %--------------------------------------------------------------------------------
@@ -94,30 +94,130 @@
 \definecolor{cvtext}{RGB}{100,100,100}
 \else
 \fi
+
 %--------------------------------------------------------------------------------
 % 章节格式设置
 %--------------------------------------------------------------------------------
-\ctexset {
-    chapter      = {
-                      beforeskip   = 0pt,
-                      fixskip      = true,
-                      format       = \huge\bfseries,
-					  name         = {,},
-                      nameformat   = \mbox{}\hfill\chapternamebox,
-                      number       = \arabic{chapter},
-					  numberformat = \fontencoding{OT1}\fontfamily{cmss}\fontsize{60pt}{72pt}\selectfont,
-                      aftername    = \par\medskip,
-                      titleformat  = \chaptertitlebox,
-                      aftertitle   = \par\smallskip
-}}
-\newtcbox{mynamebox}{on line,colback=cvsecondary,arc=0pt,boxrule=0pt,toprule=2pt,rightrule=5mm,
-colframe=cvprimary,coltext=cvtext}
-\newcommand\chapternamebox[1]{%
-\mynamebox{#1}}
-\newtcolorbox{mytitlebox}{colback=cvsecondary,arc=0pt,coltext=cvtext,
-colframe=cvprimary,boxrule=0pt,bottomrule=2pt,toprule=0pt,leftrule=5mm}
-\newcommand\chaptertitlebox[1]{%
-\begin{mytitlebox}#1\end{mytitlebox}}
+\usepackage{geometry}
+\geometry{left=2cm,right=3cm,top=2.5cm,bottom=3cm}
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{%
+%\renewcommand{\headrulewidth}{1.5pt} % 页眉与正文之间的水平线粗细
+\renewcommand{\footrulewidth}{0pt}% 取消页脚与正文之间的水平线粗细
+}
+\definecolor{cvprimary}{RGB}{0,164,215}
+\pagestyle{fancy}
+\fancyhead{} %clear all fields                                 
+\fancyhead[CE]{\color{cvprimary}}                               
+\fancyhead[CO]{\color{cvprimary}}  
+\newcommand{\fancyNum}[1]{%
+    \sffamily\textcolor{cvprimary}{%
+        \wuhao\oldstylenums{%
+            #1%
+        }%
+    }%
+} 
+                            
+\fancyhead[RO]{\color{cvprimary}\textrm{\@title}} %奇数页眉的右边                       
+\fancyhead[LE]{\color{cvprimary}\textrm{\@title}} %偶数页眉的左边                       
+\fancyhead[RE]{\color{cvprimary}\wuhao \rightmark}
+\fancyhead[LO]{\color{cvprimary}\wuhao \leftmark} %偶数页眉的左边                               
+\fancyfoot[C]{-\ \fancyNum{\thepage}\ -} 
+\renewcommand\frontmatter{%
+    \cleardoublepage
+ \pagestyle{fancy}
+}
+\renewcommand\mainmatter{%
+    \cleardoublepage
+    \pagenumbering{arabic}
+    \pagestyle{fancy}
+}
+
+
+\RequirePackage{boxie}
+\usetikzlibrary{shadows}
+
+\tcbset{chapter/.style={%
+enhanced,
+segmentation style=solid,
+halign=right,halign lower=center,arc is angular,sharp corners=uphill,breakable,parbox=true,
+boxrule=1mm,width=0.8\textwidth,lefthand width=2cm,leftrule=0mm,sidebyside,rightrule=0mm,boxsep=0mm,arc=3mm,outer arc=3mm,
+left=3mm,right=3mm,top=5mm,bottom=5mm,toptitle=1mm,bottomtitle=1mm}}
+\tcbset{section/.style={%
+enhanced,
+segmentation style=solid,
+halign=right,halign lower=left,arc is angular,sharp corners,rounded corners=northwest,breakable,parbox=true,
+boxrule=1mm,width=1\textwidth,lefthand width=2cm,leftrule=0mm,sidebyside,rightrule=0mm,boxsep=0mm,arc=3mm,outer arc=3mm,
+left=5mm,right=3mm,top=2mm,bottom=2mm,toptitle=1mm,bottomtitle=1mm}}
+\tcbset{subsection/.style={%
+halign=center,halign lower=left,arc is angular,sharp corners,breakable,parbox=false,
+boxrule=0mm,width=1\textwidth,lefthand width=3\ccwd,leftrule=0mm,sidebyside,rightrule=0mm,bottomrule=1pt,toprule=0mm,boxsep=0mm,arc=3mm,outer arc=3mm,
+left=4mm,middle=1mm,right=1mm,top=2mm,bottom=2mm,toptitle=1mm,bottomtitle=1mm}}
+\newtcolorbox{mtoc}{chapter,valign=top,width=1\textwidth,colframe=cvprimary!80,colback=white}
+\newtcolorbox{mchapter}{chapter,colframe=cvprimary!80,colback=white}
+\newtcolorbox{msection}{section,colback=cvprimary!80,colframe=white}
+\newtcolorbox{msubsection}{subsection,bicolor,colback=cvprimary!80,colbacklower=white,colframe=cvprimary!80}
+\newcommand{\mybox}[1]{%
+	\noindent\tikz[every shadow/.style={opacity=.8,fill=cvprimary}]
+    \filldraw [drop shadow,fill=white,draw=cvprimary] (0,0) rectangle (1em,1em);
+   \ \textcolor{cvprimary}{\sffamily#1}\vspace*{2mm}
+}
+
+\ctexset{
+chapter = {
+    beforeskip = 0pt,
+    fixskip = true,
+    number = {},
+    name = {},
+    titleformat = \zihao{3}\heiti\chaptertitleformat,
+    tocline = \CTEXifname{\protect\numberline{\thechapter}}{}#2,
+    },
+section = {
+    number = {},
+    name = {},
+    titleformat = \zihao{4}\heiti\sectiontitleformat,
+    tocline = \CTEXifname{\protect\numberline{\thesection}}{}#2,
+    },
+subsection = {
+    beforeskip = 0pt,
+    number = {},
+    name = {},
+    titleformat = \zihao{-4}\heiti\subsectiontitleformat,
+    tocline = \CTEXifname{\protect\numberline{\thesubsection}}{}#2,
+    },
+}
+\newcommand\chaptertitleformat[1]{%% 以标题内容为参数
+\begin{mchapter}\color{cvprimary!80}{\zihao{-5}\TeX\ Design}\par 第\thechapter 章\tcblower\color{cvprimary!80}#1\end{mchapter}}
+\newcommand\sectiontitleformat[1]{%% 以标题内容为参数
+\begin{msection}\color{white}第\thesection 节\tcblower\color{white}#1\end{msection}}
+\newcommand\subsectiontitleformat[1]{%% 以标题内容为参数
+\begin{msubsection}\color{white}\thesubsection \tcblower\color{cvprimary}#1\end{msubsection}}
+%--------------------------------------------------------------------------------
+% 目录设置
+%--------------------------------------------------------------------------------
+\RequirePackage{titletoc}
+
+\renewcommand\tableofcontents{%
+    \if@twocolumn
+      \@restonecoltrue\onecolumn
+    \else
+      \@restonecolfalse
+     \fi
+        \@mkboth{%
+            \MakeUppercase\contentsname}{\MakeUppercase\contentsname}%
+            \begin{mtoc}\color{cvprimary!80}{\zihao{-5}\TeX\ Design}\par {\zihao{3}\sffamily\contentsname}\tcblower\color{cvprimary!80}\@starttoc{toc}\vfill\end{mtoc}
+            \if@restonecol\twocolumn\fi
+}
+            
+\titlecontents{chapter}[0pt]{\vspace{0.25\baselineskip} \songti \zihao{-4}}
+    {第\thecontentslabel{章}\quad}{}
+    {\hspace{.5em}\titlerule*[10pt]{$\cdot$}\contentspage}
+\titlecontents{section}[2em]{\songti \zihao{5}}
+    {第\thecontentslabel{}节\quad}{}
+    {\hspace{.5em}\titlerule*[10pt]{$\cdot$}\contentspage}
+\titlecontents{subsection}[4em]{\songti \zihao{5}}
+    {\thecontentslabel\quad}{}
+    {\hspace{.5em}\titlerule*[10pt]{$\cdot$}\contentspage}
 %--------------------------------------------------------------------------------
 % 书籍要素的定义
 %--------------------------------------------------------------------------------
@@ -142,7 +242,7 @@ colframe=cvprimary,boxrule=0pt,bottomrule=2pt,toprule=0pt,leftrule=5mm}
 \def\LS@editor{责编}
 %---- 封面设计 ------
 \newcommand{\Designer}[1]{\def\LS@designer{#1}}
-\def\LS@designer{张晨南}
+\def\LS@designer{张小哥}
 %---- 定价 ------
 \newcommand{\Price}[1]{\def\LS@price{#1}}
 \def\LS@price{358.00} %谨以此怀念我大学的宿舍号码
@@ -163,15 +263,15 @@ colframe=cvprimary,boxrule=0pt,bottomrule=2pt,toprule=0pt,leftrule=5mm}
     %----- 竖条幅
 	\fill[cvprimary] (current page.north west) rectangle ([xshift=5cm]current page.south west);
     %----- 横条幅
-    \fill[cvsecondary] ([yshift=-5cm]current page.north west) rectangle ([yshift=-10cm]current page.north east);
+    \fill[cvprimary!30] ([yshift=-5cm]current page.north west) rectangle ([yshift=-10cm]current page.north east);
     %----- 丛书名称
-	\@ifundefined{TJ@BookSeries}{}{%
+	\@ifundefined{LS@BookSeries}{}{%
 	\node[above right] at ([xshift=5.5cm,yshift=-4.5cm]current page.north west){\LARGE\hjsd\hjsdf\LS@BookSeries};}
 	%----- 书名与副标题
     \node[cvtext,right,text width=17cm,inner sep=0.3cm] at ([xshift=1cm,yshift=-7cm]current page.north west) {\fontsize{40pt}{48pt}\selectfont\langsong\langsongf\@title};
-	\@ifundefined{TJ@subtitle}{\relax}{\node[cvtext,above left] at ([xshift=-1cm,yshift=-9.5cm]current page.north east) {\huge\sffamily ------~\LS@subtitle};}
+	\@ifundefined{LS@subtitle}{\relax}{\node[cvtext,above left] at ([xshift=-1cm,yshift=-9.5cm]current page.north east) {\huge\sffamily ------~\LS@subtitle};}
     %----- 右下角的版本号
-	\@ifundefined{TJ@edition}{}{%
+	\@ifundefined{LS@edition}{}{%
     \fill[cvprimary]([xshift=-2.5cm]current page.south east)-- ++(-5,0)-- ++(7.5,7.5)-- ++(0,-5)--cycle;
 	\node [white] at([xshift=-2.8cm,yshift=2.8cm]current page.south east)[rotate=45]{\bfseries\sffamily\LARGE 第\zhnumber{\LS@edition}版};
     \node [white] at([xshift=-2.2cm,yshift=2.2cm]current page.south east)[rotate=45]{\bfseries\LARGE Edition \ROMAN{\LS@edition}};
@@ -188,7 +288,7 @@ colframe=cvprimary,boxrule=0pt,bottomrule=2pt,toprule=0pt,leftrule=5mm}
         ([xshift=-6.5cm]current page.south east)-- ++(-0.5,0) -- ++(7,7) -- ++(0,-0.5) -- cycle;}
 	\node[right] at ([xshift=5.5cm,yshift=2.5cm]current page.south west){\LARGE\KeSong\KeSongf\LS@Publisher};
     %----- 简介与作者
-	\@ifundefined{TJ@BookIntroduction}%
+	\@ifundefined{LS@BookIntroduction}%
 	{\node[inner sep=0pt,below right,white] (image) at ([xshift=5cm,yshift=-12cm]current page.north west){%
 	\rule{8cm}{3cm}};
 	\draw[white,line width=1mm](image.east)-- ++(5,0) node[above left,text=black]{\LARGE\itshape\makebox[3em][s]{\LARGE\itshape\@author}\hspace{0.5em}著};}%
@@ -224,7 +324,7 @@ colframe=cvprimary,boxrule=0pt,bottomrule=2pt,toprule=0pt,leftrule=5mm}
 \fill[cvprimary] ([xshift=-6.45cm]current page.north east) rectangle ([xshift=-6.55cm]current page.south east);
 \fill[cvprimary] ([xshift=-6.65cm]current page.north east) rectangle ([xshift=-6.7cm]current page.south east);
 %------ 横条纹
-\fill[cvsecondary] ([yshift=-5cm]current page.north west) rectangle ([yshift=-10cm]current page.north east);
+\fill[cvprimary!30] ([yshift=-5cm]current page.north west) rectangle ([yshift=-10cm]current page.north east);
 %------ 编辑与封面设计
 \node[right] at ([xshift=1cm,yshift=-4cm]current page.north west) {\large\itshape 封面设计：\makebox[3em][s]{\large\itshape\LS@designer}};
 \node[right] at ([xshift=1cm,yshift=-4.5cm]current page.north west) {\large\itshape 责任编辑：\makebox[3em][s]{\large\itshape\LS@editor}};
@@ -252,6 +352,22 @@ colframe=cvprimary,boxrule=0pt,bottomrule=2pt,toprule=0pt,leftrule=5mm}
 \vspace{\stretch{1}}
 \newpage\thispagestyle{empty}
 \@ifundefined{TJ@DedicatedTo}{\mbox{}}{\Large\textbf{献给}：\LS@DedicatedTo}
+
+\begin{flushleft}
+   {\zihao{5}\heiti 图书在版编目（CIP）数据}
+
+    {\zihao{5} \@title /\@author 著.---成都：\LS@Publisher，\filedate
+
+    \bigskip
+    ISBN xxx-x-xxxx-xxxx-x
+
+    \bigskip
+    I.\textsc{0811}$\cdots$\hspace*{10.5bp}II.\@author$\cdots$\hspace*{10.5bp}III. 书籍---模板---\LaTeX{Studio}\hspace*{10.5bp}IV.I213
+
+    \bigskip
+    中国版本图书馆CIP数据核字(\the\year)第666666号
+    }
+\end{flushleft}
 \vfill
 \begin{center}
 {\large\sffamily \@title}\\

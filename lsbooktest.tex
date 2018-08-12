@@ -351,42 +351,5 @@ f(y) \leqslant f(x) + \nabla f(x)^T(y-x) + \frac{m}{2}\|y-x\|^2
 
 \includegraphics[width=0.7\linewidth]{unimath}
 
-
-\tcbset{tocs/.style={%
-enhanced,
-segmentation style=solid,
-halign=right,halign lower=center,arc is angular,sharp corners=uphill,breakable,parbox=true,
-boxrule=1mm,width=0.8\textwidth,lefthand width=2cm,leftrule=0mm,sidebyside,rightrule=0mm,boxsep=0mm,arc=3mm,outer arc=3mm,
-left=3mm,right=3mm,top=5mm,bottom=5mm,toptitle=1mm,bottomtitle=1mm}}
-
-\newtcolorbox{mtocs}{tocs,sidebyside align=top seam,width=1\textwidth,colframe=cvprimary!80,colback=white}
-
-\begin{mtocs}
-目录
-\tcblower
-作为第二个盒子，我们考虑凸的无线事几何规划问题
-\begin{mini}[2]
-	{}{f(x) = \log \left(\sum_{i=1}^{m}\exp(a^T_ix+b_i)\right)}
-	{\label{eq:Ex2}}{}
-\end{mini}
-其最优性条件为
-\[
-\nabla f(x^\ast) = \frac{1}{\sum\limits_{j=1}^m\exp(a^T_jx^\ast + b_j)}\sum_{i=1}^{m}\exp(a^T_ix^\ast+b_i)a_i=0.
-\]
-一般情况下该方程组没有解析解，因此我们必须采用迭代算法。由于$\symbf{dom}f=\symbf{R}^n$，斜体点都可以用作初始点$x^{(0)}$。
-
-\begin{align}\label{eq:3}
-f(y) \leqslant f(x) + \nabla f(x)^T(y-x) + \frac{m}{2}\|y-x\|^2
-\end{align}
-对任意固定的$x$，\cref{eq:3}的右边是$y$的二次凸函数。令其关于$y$的层数等于零，即
-\begin{align}\label{eq:4}
-\frac{\partial\bigl[f(x) + \nabla f(x)^T(y-x) + \frac{m}{2}\|y-x\|_2^2\bigr]}{\partial y} &= 0\\
-0 + \nabla f(x) + m(y-x) &=0\label{eq:5}
-\end{align}
-其中$y>x$，可以得到该二次函数的最优解$\tilde{y}=x-(1/m)\nabla f(x)$。
-
-二次型函数极点
-\[\left(-\frac{b}{2a},\frac{4ac-b^2}{4a}\right)\]\textbf{}
-\end{mtocs}
 \makebackcover
 \end{document}

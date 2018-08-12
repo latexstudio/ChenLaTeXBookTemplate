@@ -152,11 +152,11 @@ left=5mm,right=3mm,top=2mm,bottom=2mm,toptitle=1mm,bottomtitle=1mm}}
 \tcbset{subsection/.style={%
 halign=center,halign lower=left,arc is angular,sharp corners,breakable,parbox=false,
 boxrule=0mm,width=1\textwidth,lefthand width=3\ccwd,leftrule=0mm,sidebyside,rightrule=0mm,bottomrule=1pt,toprule=0mm,boxsep=0mm,arc=3mm,outer arc=3mm,
-left=4mm,middle=1mm,right=1mm,top=2mm,bottom=2mm,toptitle=1mm,bottomtitle=1mm}}
-\newtcolorbox{mtoc}{chapter,valign=top,width=1\textwidth,colframe=cvprimary!80,colback=white}
+left=2mm,middle=1mm,right=1mm,top=2mm,bottom=2mm,toptitle=1mm,bottomtitle=1mm}}
+\newtcolorbox{mtoc}{chapter,sidebyside align=top seam,width=1\textwidth,colframe=cvprimary!80,colback=white}
 \newtcolorbox{mchapter}{chapter,colframe=cvprimary!80,colback=white}
 \newtcolorbox{msection}{section,colback=cvprimary!80,colframe=white}
-\newtcolorbox{msubsection}{subsection,bicolor,colback=cvprimary!80,colbacklower=white,colframe=cvprimary!80}
+\newtcolorbox{msubsection}{subsection,sidebyside gap=3mm,bicolor,colback=cvprimary!80,colbacklower=white,colframe=cvprimary!80}
 \newcommand{\mybox}[1]{%
 	\noindent\tikz[every shadow/.style={opacity=.8,fill=cvprimary}]
     \filldraw [drop shadow,fill=white,draw=cvprimary] (0,0) rectangle (1em,1em);

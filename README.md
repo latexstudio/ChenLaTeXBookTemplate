@@ -15,6 +15,9 @@
 
 ### 修改了目录、章节样式，添加了几个代码盒子，settings.tex里面可以添加自己的私有设置
 
+代码盒子用的minted高亮，所以需要先安装python,再用pip安装pygments.
+命令行pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pygments
+
 ![](./screenshot/Snipaste_2018-08-11_23-38-53.png)
 
 ![](./screenshot/Snipaste_2018-08-11_23-39-19.png)

@@ -1,6 +1,7 @@
 % !TeX document-id = {ff202395-b098-4bc3-9327-f6d40065422a}
-%!TEX TXS-program:compile = txs:///xelatex/[--shell-escape]
+%%!TEX TXS-program:compile = txs:///xelatex/[--shell-escape]
 %!TEX encoding = UTF-8 Unicode
+
 \documentclass{lsbook}
 
 \tcbuselibrary{listings}
@@ -28,13 +29,18 @@
 
 \mainmatter
 \chapter{模板使用说明}
+\mybox{关于代码排版盒子中使用listings和minted的说明}
+
+由于使用minted对于初学者来说比较难以配置，所以，这里根据用户编译选项中是否使用\\
+\verb|--shell-escape|来自动切换使用listings还是minted。不用担心，命令使用上没有任何不同，只是输出效果上有差别。
+
 首先我们简要说明一下目前已经开发出来的模板功能，包括字体选择和颜色选择。
 \section{颜色选择}
 目前颜色选择共三种，\texttt{green}，\texttt{orange}和\texttt{violet}，默认为\texttt{green}。你也可以自己设置 \texttt{cvprimary}, \texttt{cvsecondary} 以及 \texttt{cvtext}，定制你自己喜欢的色盘。
 
 
 \begin{tcblisting}{listing only,applelight,title={自己来设定颜色吧！},
-  listing options={basicstyle=\ttfamily,columns=fullflexible,
+  listing options={numbers=none,basicstyle=\ttfamily,columns=fullflexible,
   language={[LaTeX]TeX},moretexcs={colorlet,definecolor,PassOptionsToPackage}}
 }
 % 如果想要用 xcolor 宏包已定义的颜色，记得要在 \documentclass 之前
@@ -282,12 +288,6 @@ $\succeq\succ\prec\preceq$$xyz\textsl{x}\text{x}$
 \end{align*}
 \subsection{线性规划问题}
 \mybox{考虑标准形式的线性规划问题}
-\begin{mini}[2]
-	{}{c^Tx}
-	{\label{eq:Ex1}}{}
-	\addConstraint{Ax = b}
-	\addConstraint{x \succeq 0}
-\end{mini}
 
 \begin{align*}
 b^T &= \begin{bmatrix}
@@ -305,18 +305,11 @@ b^T\nu &= \nu^Tb
 \end{align}
 
 考虑子空间$\symcal{A} = \symcal{R}(A)\subseteq\symbf{R}^m$和一个点$b\in\symbf{R}^m$。点$b$向子空间$\symcal{A}$的\textsf{投影}是$\symcal{A}$中在$\|\cdot\|$下最靠近$b$的点，也就是说，它是下列问题的任意最优解
-\begin{mini}[2]
-	{}{\|u-b\|}
-	{\label{eq:Ex1}}{}
-	\addConstraint{u\in \symcal{A}.}
-\end{mini}
+
 将$\symcal{R}(A)$中的元素参数化为$u=Ax$，我们可以看出求解范数逼近问题(6.1)等价于计算$b$向$\symcal{A}$的投影。
 
 Newton方法是求解无约束优化问题的有效算法，干净优化问题的一个特例就是经常遇到的最小二乘问题
-\begin{mini}[2]
-	{}{\|Ax-b\|_2^2 = x^T(A^TA)x-2(A^Tb)^Tx+b^Tb}
-	{\label{eq:Ex2}}{}
-\end{mini}
+
 其最优性条件
 \[
 A^TAx^\ast = A^Tb
@@ -324,10 +317,7 @@ A^TAx^\ast = A^Tb
 被称为最小二乘问题的\textsf{正规方程}
 \mbox{无约束几何规划}
 作为第二个盒子，我们考虑凸的无线事几何规划问题
-\begin{mini}[2]
-	{}{f(x) = \log \left(\sum_{i=1}^{m}\exp(a^T_ix+b_i)\right)}
-	{\label{eq:Ex2}}{}
-\end{mini}
+
 其最优性条件为
 \[
 \nabla f(x^\ast) = \frac{1}{\sum\limits_{j=1}^m\exp(a^T_jx^\ast + b_j)}\sum_{i=1}^{m}\exp(a^T_ix^\ast+b_i)a_i=0.

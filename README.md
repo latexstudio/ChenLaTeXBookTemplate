@@ -106,3 +106,7 @@
     \langPyfile[代码语言]{标题}{文件名}
 
 其中，中括号的参数的可选的。
+
+## --shell-escape实现listings和minted切换
+这里使用了林前辈的cncolors.sty包，如果报这个错误，可以在这里下载
+https://github.com/liantze/pgfornament-han/

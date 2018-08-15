@@ -198,11 +198,11 @@
         boxrule=0.4mm,
         pad after break=-1.5ex,
 		breakable,top=0mm,boxsep=1mm,drop shadow,attach boxed title to top,
-		colback=blue!5!white,colframe=blue!75!black,
+		colframe=blue!75!black,
 		left=4.5mm,right=0mm,enhanced,
-		colframe=tcbcol@back!60!black,colback=tcbcol@back!30!white,colbacktitle=cvgray,
+		colframe=tcbcol@back!60!black,colback=white,colbacktitle=cvgray,
 		fonttitle=\ttfamily,coltitle=black,
-         overlay broken = {\begin{tcbclipinterior}
+        overlay broken = {\begin{tcbclipinterior}
         	    		\fill[cvblue] (frame.south west) rectangle ([xshift=5mm]frame.north west);
         	    	\end{tcbclipinterior}},
         underlay boxed title = {\begin{tcbclipinterior}\fill[cvblue] (frame.south west) rectangle ([xshift=5mm,yshift=0mm]frame.north west);\end{tcbclipinterior}}	  
@@ -359,6 +359,7 @@
 %------------------------------------------------------------------------------------
 % listings part
 %------------------------------------------------------------------------------------
+\RequirePackage{lstlinebgrd} %% listings中cv盒子的行背景色
 \newcounter{cvcounter}
 % redefine the listings line number font
 \renewcommand{\thelstnumber}{\oldstylenums{%
@@ -420,7 +421,7 @@
 \DeclareTCBListing[use counter=cvcounter]{langCVOne}{ O{python} o o m }{%
 	listing only,%
     cv,%
-    listing options={language=#1,numbersep=3pt},%
+    listing options={language=#1,numbersep=3pt,linebackgroundcolor={\ifodd\value{lstnumber}\color{cvgray}\fi}},%
 	title={程序清单\thecvcounter:~#4},%\thetcbcounter
 	label = #2,
     overlay unbroken and first ={\begin{tcbclipinterior}
@@ -444,16 +445,20 @@
 	title={#2},%
     listing options={language=#1,numbers=none},%
 }
-
+\renewcommand{\thelstnumber}{\oldstylenums{%
+    \arabic{lstnumber}%
+    }%
+}
 \DeclareTCBInputListing[use counter=cvcounter]{\langCVfile}{ O{Python} o o m m}{%
 	listing only,
     cv,
     listing file={#5},
-    listing options={language=#1,numbersep=3pt},
+    listing options={language=#1,numbersep=3pt,linebackgroundcolor={\ifodd\value{lstnumber}\color{cvgray}\fi}},
 	title={程序清单\thecvcounter:~#4},%\thetcbcounter
 	label = #2,
     overlay unbroken and first ={\begin{tcbclipinterior}
                     		\node[inner sep=0pt,anchor=north east,yshift=-3pt,xshift=-5pt,text=cvgrayb] at (frame.north east){\ttfamily\faFileText\ \faCode\ \faCodeFork\ \faCopy\ \faExternalLink\ \IfNoValueTF{#3}{\MakeUppercase#1}{#3}};\end{tcbclipinterior}}}	
+
 \fi
 \endinput
 %%

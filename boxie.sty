@@ -324,6 +324,14 @@
                     		\node[inner sep=0pt,anchor=north east,yshift=-3pt,xshift=-5pt,text=cvgrayb] at (frame.north east){\ttfamily\faFileText\ \faCode\ \faCodeFork\ \faCopy\ \faExternalLink\ \IfNoValueTF{#3}{\MakeUppercase#1}{#3}};\end{tcbclipinterior}}}	    
                             
 \DeclareTCBInputListing{\langPyfile}{ O{python} m m }{%
+    listing engine=minted,%
+        		minted style=trac,%
+        		minted options={%
+        			breaklines,%
+        			fontsize=\wuhao,%
+        			linenos,%
+        			numbersep=3mm%
+               },%
 	listing only,%
     lang,%
     listing file={#3},
@@ -332,6 +340,14 @@
 }
 
 \DeclareTCBInputListing{\gitfile}{ O{bash} m m }{%
+    listing engine=minted,%
+        		minted style=trac,%
+        		minted options={%
+        			autogobble,%
+        			breaklines,%
+        			fontsize=\wuhao,%
+        			numbersep=3mm%
+        		},%
 	listing only,%
 	gitexample,%
     listing file={#3},%

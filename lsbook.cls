@@ -94,7 +94,8 @@
 \definecolor{cvtext}{RGB}{100,100,100}
 \else
 \fi
-
+\definecolor{zhanqing}{RGB}{0,51,113}
+\definecolor{chengse}{RGB}{250,140,53}
 %--------------------------------------------------------------------------------
 % 章节格式设置
 %--------------------------------------------------------------------------------
@@ -134,7 +135,6 @@
 }
 
 
-\RequirePackage{cncolours}
 \RequirePackage{boxie}
 \usetikzlibrary{shadows}
 
@@ -159,14 +159,14 @@ enhanced,breakable,
 halign=center,arc is angular,sharp corners=uphill,parbox=true,
 boxrule=1mm,width=0.8\textwidth,leftrule=0mm,rightrule=0mm,boxsep=0mm,arc=3mm,outer arc=3mm,
 left=3cm,right=3mm,top=5mm,bottom=5mm,toptitle=1mm,bottomtitle=1mm,%
-overlay unbroken and first={\begin{tcbclipinterior}\draw[绀青,line width=0.5pt] ([xshift=2.8cm]frame.north west)
---([xshift=2.8cm]frame.south west);\node[anchor=west] at ([xshift=5mm,yshift=-0.7cm]frame.north west) {\color{绀青}{\zihao{3}\KeSong\KeSongf 目~录}};\end{tcbclipinterior}},
-overlay middle={\begin{tcbclipinterior}\draw[绀青,line width=1pt] ([xshift=2.8cm]frame.north west)
+overlay unbroken and first={\begin{tcbclipinterior}\draw[zhanqing,line width=0.5pt] ([xshift=2.8cm]frame.north west)
+--([xshift=2.8cm]frame.south west);\node[anchor=west] at ([xshift=5mm,yshift=-0.7cm]frame.north west) {\color{zhanqing}{\zihao{3}\KeSong\KeSongf 目~录}};\end{tcbclipinterior}},
+overlay middle={\begin{tcbclipinterior}\draw[zhanqing,line width=1pt] ([xshift=2.8cm]frame.north west)
 --([xshift=2.8cm]frame.south west);\end{tcbclipinterior} },
-overlay last={\begin{tcbclipinterior}\draw[绀青,line width=1pt] ([xshift=2.8cm]frame.north west)
+overlay last={\begin{tcbclipinterior}\draw[zhanqing,line width=1pt] ([xshift=2.8cm]frame.north west)
 --([xshift=2.8cm]frame.south west);\end{tcbclipinterior}},%
 }}
-\newtcolorbox{mtoc}{tocs,width=1\textwidth,colframe=绀青,colback=white}
+\newtcolorbox{mtoc}{tocs,width=1\textwidth,colframe=zhanqing,colback=white}
 \newtcolorbox{mchapter}{chapter,colframe=cvprimary!80,colback=white}
 \newtcolorbox{msection}{section,colback=cvprimary!80,colframe=white}
 \newtcolorbox{msubsection}{subsection,sidebyside gap=3mm,bicolor,colback=cvprimary!80,colbacklower=white,colframe=cvprimary!80}
@@ -218,7 +218,7 @@ subsection = {
      \fi
         \@mkboth{%
             \MakeUppercase\contentsname}{\MakeUppercase\contentsname}%
-            \begin{mtoc}\color{绀青!80}\@starttoc{toc}\vfill\end{mtoc}
+            \begin{mtoc}\color{zhanqing!80}\@starttoc{toc}\vfill\end{mtoc}
             \if@restonecol\twocolumn\fi
 }
             
@@ -480,4 +480,3 @@ subsection = {
 }
 
 \endinput
-启用

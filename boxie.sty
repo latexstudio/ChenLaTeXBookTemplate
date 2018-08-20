@@ -41,10 +41,15 @@
          
 \RequirePackage{fontawesome}
 \RequirePackage{varwidth}
+
 \RequirePackage{xcolor}
 %------------------------------------------------------------------------------------
 % color definition
 %------------------------------------------------------------------------------------
+
+% tcolorbox
+\RequirePackage{xcolor}
+
 \definecolor{mpurple}{RGB}{48,10,36}
 \definecolor{mgray}{RGB}{70,72,67}
 \definecolor{ogray}{RGB}{148,147,141}
@@ -55,6 +60,7 @@
 \definecolor{cvgray}{RGB}{220,220,220}
 \definecolor{cvgrayb}{RGB}{153,153,153}
 \definecolor{cvblue}{RGB}{223,238,255}
+
 \definecolor{zhanqing}{RGB}{0,51,113}
 \definecolor{chengse}{RGB}{250,140,53}
 \RequirePackage{multido}
@@ -63,6 +69,12 @@
 %------------------------------------------------------------------------------------
 % chinese fontsize definition
 %------------------------------------------------------------------------------------
+
+
+\RequirePackage{multido}
+\tcbuselibrary{skins, listings, xparse, breakable}
+
+%% fontsize definition
 
 \makeatletter
 \def\thu@def@fontsize#1#2{%
@@ -116,9 +128,11 @@
 	\end{tikzpicture}
 }
 
+
 %------------------------------------------------------------------------------------
 % tcolorbox styles definition
 %------------------------------------------------------------------------------------
+
 
 \tcbset{%
 	skin=enhanced,%
@@ -138,6 +152,15 @@
 		breakable,%
 		colframe=mgray,%
 		colbacktitle=mgray,%
+
+		listing engine=minted,%
+		minted style=trac,%
+		minted options={%
+			autogobble,%
+			breaklines,%
+			fontsize=\wuhao,%
+			numbersep=3mm%
+		},%
 		overlay unbroken={%
 			\node[inner sep=0pt,anchor=north west,yshift=-5pt,xshift=10pt,text=white] at (frame.north west){\UbuntuClose~\UbuntuMin~\UbuntuMax};%
 		},
@@ -146,6 +169,25 @@
 		}%
 	}%
 }
+
+
+\DeclareTCBListing{GitExample}{ O{bash} m m }{%
+	listing and comment,%
+	colbacklower=tcbcol@back!5!yellow!10!white,%
+	collower=linux,%
+	gitexample,%
+	title={#3},%
+	comment={\small\sffamily#2},%
+    minted language=#1%
+}
+
+\DeclareTCBListing{GitExampla}{ O{bash} m }{%
+	listing only,%
+	gitexample,%
+	title={#2},%
+    minted language=#1%
+}
+
 		
 \tcbset{%
 	skin=enhanced,
@@ -153,8 +195,20 @@
 	lang/.style={%
 		breakable,%
 		drop shadow,%
+
     	colframe=blue!75!black,%
     	left=4.5mm,
+		listing engine=minted,%
+		minted style=trac,%
+		minted options={%
+			breaklines,%
+			fontsize=\wuhao,%
+			linenos,%
+			numbersep=3mm%
+		},%
+    	colback=blue!5!white,%
+    	colframe=blue!75!black,%
+    	left=6mm,%
     	enhanced,%
     	colframe=tcbcol@back!60!black,%
 	    colback=tcbcol@back!30!white,%
@@ -186,6 +240,7 @@
 	    	},%
 	    	interior engine=empty%
 	    },%
+ 
 %	    overlay={%
 %	    	\begin{tcbclipinterior}
 %	    		\fill[tcbcol@back!80!black] (frame.south west) rectangle ([xshift=5mm]frame.north west);
@@ -285,6 +340,17 @@
     			linenos,%
     			numbersep=1mm%
            },%
+
+	    overlay={%
+	    	\begin{tcbclipinterior}
+	    		\fill[tcbcol@back!80!black] (frame.south west) rectangle ([xshift=5mm]frame.north west);
+	    	\end{tcbclipinterior}%
+	    }%
+	}%
+}
+
+\DeclareTCBListing{langPyTwo}{ O{python} m m }{%
+
 	listing and comment,%
 	colbacklower=tcbcol@back!5!yellow!10!white,%
 	collower=tcbcol@back!60!black,%
@@ -295,6 +361,7 @@
 }
 
 \DeclareTCBListing{langPyOne}{ O{python} m }{%
+
     overlay={%
         	    	\begin{tcbclipinterior}
         	    		\fill[tcbcol@back!80!black] (frame.south west) rectangle ([xshift=6mm]frame.north west);
@@ -310,11 +377,14 @@
     			linenos,%
     			numbersep=1mm%
            },%
+
+
 	listing only,%
     lang,%
 	title={#2},%
     minted language=#1%
 }
+
 
 \newcounter{cvcounter}
 \DeclareTCBListing[use counter=cvcounter]{langCVOne}{ O{python} o o m }{%
@@ -323,6 +393,35 @@
                             highlightlinenumbercolor={cvblue, cvblue!70},mathescape,breaklines,fontsize=\wuhao,linenos,
     			numbersep=1mm%
                 },
+
+% redefine the line number font
+\renewcommand{\theFancyVerbLine}{%
+    \sffamily\textcolor[rgb]{0.5,0.5,1.0}{%
+        \scriptsize\oldstylenums{%
+            \arabic{FancyVerbLine}%
+        }%
+    }%
+}
+
+\tcbset{skin=enhanced,
+	cv/.style={
+        boxrule=0.4mm,
+        pad after break=-1.5ex,
+		breakable,top=0mm,boxsep=1mm,drop shadow,listing engine=minted,minted style=xcode,
+		minted options={highlightcolor=cvgray!50!white,highlightlines={1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,67,69,71,73,75,77,79,81,83,85,87,89,91,93,95,97,99,101,103,105,107,109,111,113,115,117,119,121,123,125,127,129,131,133,135,137,139,141,143,145,147,149,151,153,155,157,159,161,163,165,167,169,171,173,175,177,179,181,183,185,187,189,191,193,195,197,199},mathescape,breaklines,fontsize=\wuhao,linenos,
+			numbersep=2mm},attach boxed title to top,
+		colback=blue!5!white,colframe=blue!75!black,
+		left=4.5mm,right=0mm,enhanced,
+		colframe=tcbcol@back!60!black,colback=tcbcol@back!30!white,colbacktitle=cvgray,
+		fonttitle=\ttfamily,coltitle=black,
+         overlay broken = {\begin{tcbclipinterior}
+        	    		\fill[cvblue] (frame.south west) rectangle ([xshift=5mm]frame.north west);
+        	    	\end{tcbclipinterior}},
+        underlay boxed title = {\begin{tcbclipinterior}\fill[cvblue] (frame.south west) rectangle ([xshift=5mm,yshift=0mm]frame.north west);\end{tcbclipinterior}}	  
+}}
+\newcounter{cvcounter}
+\DeclareTCBListing[use counter=cvcounter]{langCVOne}{ O{python} o o m }{%
+
 	listing only,
     cv,
     minted language=#1,
@@ -330,6 +429,7 @@
 	label = #2,
     overlay unbroken and first ={\begin{tcbclipinterior}
                     		\node[inner sep=0pt,anchor=north east,yshift=-3pt,xshift=-5pt,text=cvgrayb] at (frame.north east){\ttfamily\faFileText\ \faCode\ \faCodeFork\ \faCopy\ \faExternalLink\ \IfNoValueTF{#3}{\MakeUppercase#1}{#3}};\end{tcbclipinterior}}}
+
 %===================================
 %      command InputListing 
 %===================================     
@@ -338,6 +438,11 @@
     		minted options={highlightcolor={cvgray!50!white, white},
                             highlightlinenumbercolor={cvblue, cvblue!70},mathescape,breaklines,fontsize=\wuhao,linenos,
     			numbersep=1mm},
+
+%-----------------------------------------------------------------------
+% 使用listing file直接引入代码文件 
+%-----------------------------------------------------------------------     
+\DeclareTCBInputListing[use counter=cvcounter]{\langCVfile}{ O{python} o o m m}{%
 	listing only,
     cv,
     listing file={#5},
@@ -348,6 +453,7 @@
                     		\node[inner sep=0pt,anchor=north east,yshift=-3pt,xshift=-5pt,text=cvgrayb] at (frame.north east){\ttfamily\faFileText\ \faCode\ \faCodeFork\ \faCopy\ \faExternalLink\ \IfNoValueTF{#3}{\MakeUppercase#1}{#3}};\end{tcbclipinterior}}}	    
                             
 \DeclareTCBInputListing{\langPyfile}{ O{python} m m }{%
+
     overlay={%
         	    	\begin{tcbclipinterior}
         	    		\fill[tcbcol@back!80!black] (frame.south west) rectangle ([xshift=6mm]frame.north west);
@@ -363,6 +469,7 @@
         			linenos,%
         			numbersep=1mm%
                },%
+
 	listing only,%
     lang,%
     listing file={#3},
@@ -371,6 +478,7 @@
 }
 
 \DeclareTCBInputListing{\gitfile}{ O{bash} m m }{%
+
     listing engine=minted,%
         		minted style=trac,%
         		minted options={%
@@ -379,11 +487,13 @@
         			fontsize=\wuhao,%
         			numbersep=3mm%
         		},%
+
 	listing only,%
 	gitexample,%
     listing file={#3},%
 	title={#2},%
     minted language=#1%
+
 }
 \else
 \tcbuselibrary{listings}
@@ -506,6 +616,9 @@
                     		\node[inner sep=0pt,anchor=north east,yshift=-3pt,xshift=-5pt,text=cvgrayb] at (frame.north east){\ttfamily\faFileText\ \faCode\ \faCodeFork\ \faCopy\ \faExternalLink\ \IfNoValueTF{#3}{\MakeUppercase#1}{#3}};\end{tcbclipinterior}}}	
 
 \fi
+
+}        		
+
 \endinput
 %%
 %% End of file `indentfirst.sty'.

@@ -3,7 +3,7 @@
 
 这是我们群管理员开发的LaTeX书籍模板。
 
-编译测试版本：TeXLive 2017，xelatex进行编译。
+编译测试版本：TeXLive 2018，xelatex进行编译。
 
 所需字体见字体下载链接：https://share.weiyun.com/5jHbzU9
 
@@ -104,6 +104,9 @@
     \langCVfile[代码语言][盒子标签][语言名显示]{标题}{文件名}
     \gitfile[代码语言]{标题}{文件名}
     \langPyfile[代码语言]{标题}{文件名}
+
+
+其中，中括号的参数的可选的。
 
 
 其中，中括号的参数的可选的。

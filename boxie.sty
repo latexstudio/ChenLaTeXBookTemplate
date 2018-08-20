@@ -42,13 +42,17 @@
 \RequirePackage{fontawesome}
 \RequirePackage{varwidth}
 
+% tcolorbox
 \RequirePackage{xcolor}
+
+
 %------------------------------------------------------------------------------------
 % color definition
 %------------------------------------------------------------------------------------
 
 % tcolorbox
 \RequirePackage{xcolor}
+
 
 \definecolor{mpurple}{RGB}{48,10,36}
 \definecolor{mgray}{RGB}{70,72,67}
@@ -61,6 +65,7 @@
 \definecolor{cvgrayb}{RGB}{153,153,153}
 \definecolor{cvblue}{RGB}{223,238,255}
 
+
 \definecolor{zhanqing}{RGB}{0,51,113}
 \definecolor{chengse}{RGB}{250,140,53}
 \RequirePackage{multido}
@@ -69,6 +74,7 @@
 %------------------------------------------------------------------------------------
 % chinese fontsize definition
 %------------------------------------------------------------------------------------
+
 
 
 \RequirePackage{multido}
@@ -127,6 +133,7 @@
 	\draw[termimal](-0.25,-0.2)rectangle(0.25,0.2);
 	\end{tikzpicture}
 }
+
 
 
 %------------------------------------------------------------------------------------
@@ -240,6 +247,7 @@
 	    	},%
 	    	interior engine=empty%
 	    },%
+
  
 %	    overlay={%
 %	    	\begin{tcbclipinterior}
@@ -350,7 +358,6 @@
 }
 
 \DeclareTCBListing{langPyTwo}{ O{python} m m }{%
-
 	listing and comment,%
 	colbacklower=tcbcol@back!5!yellow!10!white,%
 	collower=tcbcol@back!60!black,%
@@ -361,7 +368,6 @@
 }
 
 \DeclareTCBListing{langPyOne}{ O{python} m }{%
-
     overlay={%
         	    	\begin{tcbclipinterior}
         	    		\fill[tcbcol@back!80!black] (frame.south west) rectangle ([xshift=6mm]frame.north west);
@@ -377,13 +383,12 @@
     			linenos,%
     			numbersep=1mm%
            },%
-
-
 	listing only,%
     lang,%
 	title={#2},%
     minted language=#1%
 }
+
 
 
 \newcounter{cvcounter}
@@ -421,7 +426,6 @@
 }}
 \newcounter{cvcounter}
 \DeclareTCBListing[use counter=cvcounter]{langCVOne}{ O{python} o o m }{%
-
 	listing only,
     cv,
     minted language=#1,
@@ -429,6 +433,7 @@
 	label = #2,
     overlay unbroken and first ={\begin{tcbclipinterior}
                     		\node[inner sep=0pt,anchor=north east,yshift=-3pt,xshift=-5pt,text=cvgrayb] at (frame.north east){\ttfamily\faFileText\ \faCode\ \faCodeFork\ \faCopy\ \faExternalLink\ \IfNoValueTF{#3}{\MakeUppercase#1}{#3}};\end{tcbclipinterior}}}
+
 
 %===================================
 %      command InputListing 
@@ -453,7 +458,6 @@
                     		\node[inner sep=0pt,anchor=north east,yshift=-3pt,xshift=-5pt,text=cvgrayb] at (frame.north east){\ttfamily\faFileText\ \faCode\ \faCodeFork\ \faCopy\ \faExternalLink\ \IfNoValueTF{#3}{\MakeUppercase#1}{#3}};\end{tcbclipinterior}}}	    
                             
 \DeclareTCBInputListing{\langPyfile}{ O{python} m m }{%
-
     overlay={%
         	    	\begin{tcbclipinterior}
         	    		\fill[tcbcol@back!80!black] (frame.south west) rectangle ([xshift=6mm]frame.north west);
@@ -469,7 +473,6 @@
         			linenos,%
         			numbersep=1mm%
                },%
-
 	listing only,%
     lang,%
     listing file={#3},
@@ -478,7 +481,6 @@
 }
 
 \DeclareTCBInputListing{\gitfile}{ O{bash} m m }{%
-
     listing engine=minted,%
         		minted style=trac,%
         		minted options={%
@@ -487,13 +489,12 @@
         			fontsize=\wuhao,%
         			numbersep=3mm%
         		},%
-
 	listing only,%
 	gitexample,%
     listing file={#3},%
 	title={#2},%
     minted language=#1%
-
+}  
 }
 \else
 \tcbuselibrary{listings}

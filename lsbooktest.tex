@@ -1,5 +1,9 @@
 % !TeX document-id = {ff202395-b098-4bc3-9327-f6d40065422a}
 
+%!TEX TXS-program:compile = txs:///xelatex/[--shell-escape]
+%!TEX encoding = UTF-8 Unicode
+
+
 %%!TEX TXS-program:compile = txs:///xelatex/[--shell-escape]
 %!TEX encoding = UTF-8 Unicode
 %!TEX builder = latexmk
@@ -48,6 +52,8 @@
 
 
 \begin{tcblisting}{listing only,applelight,title={自己来设定颜色吧！},
+  listing options={basicstyle=\ttfamily,columns=fullflexible,
+
 
   listing options={numbers=none,basicstyle=\ttfamily,columns=fullflexible,
 
@@ -329,9 +335,11 @@ b^T\nu &= \nu^Tb
 考虑子空间$\symcal{A} = \symcal{R}(A)\subseteq\symbf{R}^m$和一个点$b\in\symbf{R}^m$。点$b$向子空间$\symcal{A}$的\textsf{投影}是$\symcal{A}$中在$\|\cdot\|$下最靠近$b$的点，也就是说，它是下列问题的任意最优解
 
 
+
 将$\symcal{R}(A)$中的元素参数化为$u=Ax$，我们可以看出求解范数逼近问题(6.1)等价于计算$b$向$\symcal{A}$的投影。
 
 Newton方法是求解无约束优化问题的有效算法，干净优化问题的一个特例就是经常遇到的最小二乘问题
+
 
 
 \begin{mini}[2]
@@ -347,6 +355,7 @@ Newton方法是求解无约束优化问题的有效算法，干净优化问题�
 	{\label{eq:Ex2}}{}
 \end{mini}
 
+
 其最优性条件
 \[
 A^TAx^\ast = A^Tb
@@ -360,6 +369,7 @@ A^TAx^\ast = A^Tb
 	{}{f(x) = \log \left(\sum_{i=1}^{m}\exp(a^T_ix+b_i)\right)}
 	{\label{eq:Ex2}}{}
 \end{mini}
+
 
 其最优性条件为
 \[
@@ -381,6 +391,8 @@ f(y) \leqslant f(x) + \nabla f(x)^T(y-x) + \frac{m}{2}\|y-x\|^2
 \[\left(-\frac{b}{2a},\frac{4ac-b^2}{4a}\right)\]
 \mybox{unicode-math的一些说明}
 
+
+
 这里使用的数学宏包是unicode-math，但是两个命令可能通用，效果是一样的。
 
 \includegraphics[width=0.7\linewidth]{unimath}
@@ -388,10 +400,12 @@ f(y) \leqslant f(x) + \nabla f(x)^T(y-x) + \frac{m}{2}\|y-x\|^2
 \mybox{直接引入文件来排版代码}
 
 
+
 这里使用的数学宏包是unicode-math，所以一些命令与amsmath里面有些不同
 
 \includegraphics[width=0.7\linewidth]{unimath}
 \mybox{直接引入文件来排版代码}
+
 
 \begin{langCVOne}{使用方法}
 \langCVfile[代码语言][盒子标签][语言名显示]{标题}{文件名}

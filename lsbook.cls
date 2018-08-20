@@ -30,7 +30,9 @@
 %--------------------------------------------------------------------------------
 % tikz 及 tcolorbox 应用
 %--------------------------------------------------------------------------------
+
 \RequirePackage[minted]{tcolorbox}
+
 \tcbuselibrary{skins,breakable}
 \usetikzlibrary{patterns}
 %--------------------------------------------------------------------------------
@@ -95,6 +97,10 @@
 \else
 \fi
 
+
+\definecolor{zhanqing}{RGB}{0,51,113}
+\definecolor{chengse}{RGB}{250,140,53}
+
 %--------------------------------------------------------------------------------
 % 章节格式设置
 %--------------------------------------------------------------------------------
@@ -135,6 +141,8 @@
 
 
 \RequirePackage{cncolours}
+
+
 \RequirePackage{boxie}
 \usetikzlibrary{shadows}
 
@@ -167,6 +175,7 @@ overlay last={\begin{tcbclipinterior}\draw[绀青,line width=1pt] ([xshift=2.8cm
 --([xshift=2.8cm]frame.south west);\end{tcbclipinterior}},%
 }}
 \newtcolorbox{mtoc}{tocs,width=1\textwidth,colframe=绀青,colback=white}
+
 \newtcolorbox{mchapter}{chapter,colframe=cvprimary!80,colback=white}
 \newtcolorbox{msection}{section,colback=cvprimary!80,colframe=white}
 \newtcolorbox{msubsection}{subsection,sidebyside gap=3mm,bicolor,colback=cvprimary!80,colbacklower=white,colframe=cvprimary!80}
@@ -218,6 +227,8 @@ subsection = {
      \fi
         \@mkboth{%
             \MakeUppercase\contentsname}{\MakeUppercase\contentsname}%
+
+            \begin{mtoc}\color{zhanqing!80}\@starttoc{toc}\vfill\end{mtoc}
             \begin{mtoc}\color{绀青!80}\@starttoc{toc}\vfill\end{mtoc}
             \if@restonecol\twocolumn\fi
 }
@@ -480,4 +491,3 @@ subsection = {
 }
 
 \endinput
-启用

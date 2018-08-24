@@ -10,6 +10,7 @@
 *.fot
 *.cb
 *.cb2
+*.xdv
 
 ## Intermediate documents:
 *.dvi
@@ -222,5 +223,5 @@ TSWLatexianTemp*
 *.listing
 
 # fonts
-*.ttf *.otf
-
+*.ttf
+*.otf

@@ -375,7 +375,7 @@ subsection = {
     ISBN xxx-x-xxxx-xxxx-x
 
     \bigskip
-    I.\textsc{0811}$\cdots$\hspace*{10.5bp}II.\@author$\cdots$\hspace*{10.5bp}III. 书籍---模板---\LaTeX{Studio}\hspace*{10.5bp}IV.I213
+    \ROMAN{1}.\textsc{0811}$\cdots$\hspace*{10.5bp} \ROMAN{2}.\@author$\cdots$\hspace*{10.5bp} \ROMAN{3}. 书籍---模板---\LaTeX{Studio}\hspace*{10.5bp}IV.I213
 
     \bigskip
     中国版本图书馆CIP数据核字(\the\year)第666666号

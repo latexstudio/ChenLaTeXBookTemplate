@@ -106,7 +106,7 @@
 %\renewcommand{\headrulewidth}{1.5pt} % 页眉与正文之间的水平线粗细
 \renewcommand{\footrulewidth}{0pt}% 取消页脚与正文之间的水平线粗细
 }
-\definecolor{cvprimary}{RGB}{0,164,215}
+%\definecolor{cvprimary}{RGB}{0,164,215}
 \pagestyle{fancy}
 \fancyhead{} %clear all fields                                 
 \fancyhead[CE]{\color{cvprimary}}                               

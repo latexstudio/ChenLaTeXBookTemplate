@@ -156,9 +156,9 @@
     	colframe=blue!75!black,%
     	left=4.5mm,
     	enhanced,%
-    	colframe=tcbcol@back!60!black,%
-	    colback=tcbcol@back!30!white,%
-	    colbacktitle=tcbcol@back!5!yellow!10!white,%
+    	colframe=tcbcolback!60!black,%
+	    colback=tcbcolback!30!white,%
+	    colbacktitle=tcbcolback!5!yellow!10!white,%
 	    fonttitle=\bfseries,%
 	    coltitle=black,%
 	    attach boxed title to top center={%
@@ -172,10 +172,10 @@
 	    varwidth boxed title*=-3cm,%
 	    boxed title style={%
 	    	frame code={%
-	    		\path[fill=tcbcol@back!30!black]([yshift=-1mm,xshift=-1mm]frame.north west)%
+	    		\path[fill=tcbcolback!30!black]([yshift=-1mm,xshift=-1mm]frame.north west)%
 	    		arc[start angle=0,end angle=180,radius=1mm]([yshift=-1mm,xshift=1mm]frame.north east)%
 	    		arc[start angle=180,end angle=0,radius=1mm];
-	    		\path[left color=tcbcol@back!60!black,right color=tcbcol@back!60!black,middle color=tcbcol@back!80!black]%
+	    		\path[left color=tcbcolback!60!black,right color=tcbcolback!60!black,middle color=tcbcolback!80!black]%
 	    		([xshift=-2mm]frame.north west)%
 	    		--([xshift=2mm]frame.north east)[rounded corners=1mm]%
 	    		--([xshift=1mm,yshift=-1mm]frame.north east)%
@@ -188,7 +188,7 @@
 	    },%
 %	    overlay={%
 %	    	\begin{tcbclipinterior}
-%	    		\fill[tcbcol@back!80!black] (frame.south west) rectangle ([xshift=5mm]frame.north west);
+%	    		\fill[tcbcolback!80!black] (frame.south west) rectangle ([xshift=5mm]frame.north west);
 %	    	\end{tcbclipinterior}%
 %	    }%
 	}%
@@ -203,7 +203,7 @@
 		breakable,top=0mm,boxsep=1mm,drop shadow,attach boxed title to top,
 		colframe=blue!75!black,
 		left=4.5mm,right=0mm,enhanced,
-		colframe=tcbcol@back!60!black,colback=white,colbacktitle=cvgray,
+		colframe=tcbcolback!60!black,colback=white,colbacktitle=cvgray,
 		fonttitle=\ttfamily,coltitle=black,
         overlay broken = {\begin{tcbclipinterior}
         	    		\fill[cvblue] (frame.south west) rectangle ([xshift=5.9mm]frame.north west);
@@ -246,7 +246,7 @@
     			numbersep=3mm%
     		},%
 	listing and comment,%
-	colbacklower=tcbcol@back!5!yellow!10!white,%
+	colbacklower=tcbcolback!5!yellow!10!white,%
 	collower=linux,%
 	gitexample,%
 	title={#3},%
@@ -272,22 +272,22 @@
 \DeclareTCBListing{langPyTwo}{ O{python} m m }{%
     overlay={%
     	    	\begin{tcbclipinterior}
-    	    		\fill[tcbcol@back!80!black] (frame.south west) rectangle ([xshift=6mm]frame.north west);
+    	    		\fill[tcbcolback!80!black] (frame.south west) rectangle ([xshift=6mm]frame.north west);
     	    	\end{tcbclipinterior}%
     	    },%
     listing engine=minted,%
     		minted style=trac,%
     		minted options={%
-                highlightcolor={tcbcol@back!30!white, tcbcol@back!30!white},
-                highlightlinenumbercolor={tcbcol@back!80!black, tcbcol@back!80!black},
+                highlightcolor={tcbcolback!30!white, tcbcolback!30!white},
+                highlightlinenumbercolor={tcbcolback!80!black, tcbcolback!80!black},
     			breaklines,%
     			fontsize=\wuhao,%
     			linenos,%
     			numbersep=1mm%
            },%
 	listing and comment,%
-	colbacklower=tcbcol@back!5!yellow!10!white,%
-	collower=tcbcol@back!60!black,%
+	colbacklower=tcbcolback!5!yellow!10!white,%
+	collower=tcbcolback!60!black,%
 	title={#3},%
 	lang,%
 	comment={\small\sffamily#2},%
@@ -297,14 +297,14 @@
 \DeclareTCBListing{langPyOne}{ O{python} m }{%
     overlay={%
         	    	\begin{tcbclipinterior}
-        	    		\fill[tcbcol@back!80!black] (frame.south west) rectangle ([xshift=6mm]frame.north west);
+        	    		\fill[tcbcolback!80!black] (frame.south west) rectangle ([xshift=6mm]frame.north west);
         	    	\end{tcbclipinterior}%
         	    },%
     listing engine=minted,%
     		minted style=trac,%
     		minted options={%
-                highlightcolor={tcbcol@back!30!white, tcbcol@back!30!white},
-                highlightlinenumbercolor={tcbcol@back!80!black, tcbcol@back!80!black},
+                highlightcolor={tcbcolback!30!white, tcbcolback!30!white},
+                highlightlinenumbercolor={tcbcolback!80!black, tcbcolback!80!black},
     			breaklines,%
     			fontsize=\wuhao,%
     			linenos,%
@@ -350,14 +350,14 @@
 \DeclareTCBInputListing{\langPyfile}{ O{python} m m }{%
     overlay={%
         	    	\begin{tcbclipinterior}
-        	    		\fill[tcbcol@back!80!black] (frame.south west) rectangle ([xshift=6mm]frame.north west);
+        	    		\fill[tcbcolback!80!black] (frame.south west) rectangle ([xshift=6mm]frame.north west);
         	    	\end{tcbclipinterior}%
         	    },%
     listing engine=minted,%
         		minted style=trac,%
         		minted options={%
-                    highlightcolor={tcbcol@back!30!white, tcbcol@back!30!white},
-                    highlightlinenumbercolor={tcbcol@back!80!black, tcbcol@back!80!black},
+                    highlightcolor={tcbcolback!30!white, tcbcolback!30!white},
+                    highlightlinenumbercolor={tcbcolback!80!black, tcbcolback!80!black},
         			breaklines,%
         			fontsize=\wuhao,%
         			linenos,%
@@ -417,7 +417,7 @@
 
 \DeclareTCBListing{GitExample}{ O{bash} m m }{%
 	listing and comment,%
-	colbacklower=tcbcol@back!5!yellow!10!white,%
+	colbacklower=tcbcolback!5!yellow!10!white,%
 	collower=linux,%
 	gitexample,%
 	title={#3},%
@@ -435,12 +435,12 @@
 \DeclareTCBListing{langPyTwo}{ O{python} m m }{%
     overlay={%
         	    	\begin{tcbclipinterior}
-        	    		\fill[tcbcol@back!80!black] (frame.south west) rectangle ([xshift=5mm]frame.north west);
+        	    		\fill[tcbcolback!80!black] (frame.south west) rectangle ([xshift=5mm]frame.north west);
         	    	\end{tcbclipinterior}%
         	    },%
 	listing and comment,%
-	colbacklower=tcbcol@back!5!yellow!10!white,%
-	collower=tcbcol@back!60!black,%
+	colbacklower=tcbcolback!5!yellow!10!white,%
+	collower=tcbcolback!60!black,%
 	title={#3},%
 	lang,%
 	comment={\small\sffamily#2},%
@@ -450,7 +450,7 @@
 \DeclareTCBListing{langPyOne}{ O{python} m }{%
     overlay={%
         	    	\begin{tcbclipinterior}
-        	    		\fill[tcbcol@back!80!black] (frame.south west) rectangle ([xshift=5mm]frame.north west);
+        	    		\fill[tcbcolback!80!black] (frame.south west) rectangle ([xshift=5mm]frame.north west);
         	    	\end{tcbclipinterior}%
         	    },%
 	listing only,%
@@ -474,7 +474,7 @@
 \DeclareTCBInputListing{\langPyfile}{ O{python} m m }{%
     overlay={%
         	    	\begin{tcbclipinterior}
-        	    		\fill[tcbcol@back!80!black] (frame.south west) rectangle ([xshift=5mm]frame.north west);
+        	    		\fill[tcbcolback!80!black] (frame.south west) rectangle ([xshift=5mm]frame.north west);
         	    	\end{tcbclipinterior}%
         	    },%
 	listing only,%
